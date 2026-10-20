@@ -1,1 +1,9 @@
-
+Tech: python
+Tech: algorithm
+Tech: blockchain
+Cities: mumbai
+Cities: nagpur
+Cities: nashik
+Sports: basketball
+Sports: swimming
+Sports: archery
