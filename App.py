@@ -77,16 +77,19 @@ if 'word' not in st.session_state:
 st.title("🎮 Word Scramble & Hangman Arena")
 st.caption("Powered by Python, String Manipulation & Set Operations")
 
-# Sidebar - Settings & Reset
-st.sidebar.header("Game Settings")
-mode = st.sidebar.radio("Select Game Mode", ["Word Scramble", "Hangman"])
+# Main Page Controls (Dropdown / Selectbox & Restart Button)
+col_ctrl1, col_ctrl2 = st.columns([2, 1])
+with col_ctrl1:
+    mode = st.selectbox("Select Game Mode", ["Word Scramble", "Hangman"])
+with col_ctrl2:
+    st.write("") # Spacing alignment
+    st.write("")
+    if st.button("🔄 New Word / Restart"):
+        start_new_game()
+        st.rerun()
 
-if st.sidebar.button("🔄 New Word / Restart"):
-    start_new_game()
-    st.rerun()
-
-st.sidebar.markdown("---")
-st.sidebar.write(f"**Current Category:** `{st.session_state.category}`")
+st.markdown("---")
+st.write(f"**Current Category:** `{st.session_state.category}`")
 
 # ------------------------------------------
 # MODE 1: WORD SCRAMBLE
@@ -125,7 +128,7 @@ elif mode == "Hangman":
     st.subheader(f"Category: {st.session_state.category}")
     
     # Reveal word state
-    display_word = [letter.upper() if letter in st.session_state.guessed_letters else "\\_" for letter in st.session_state.word]
+    display_word = [letter.upper() if letter in st.session_state.guessed_letters else "_" for letter in st.session_state.word]
     st.markdown(f"### Word:  {' '.join(display_word)}")
 
     # Set operations for available letters
